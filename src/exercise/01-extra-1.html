@@ -20,13 +20,17 @@
 <!--   📜 https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append -->
 
 <body>
-  <div id="root"></div>
-
   <script type="module">
+    const body = document.body;
+
+    const root = document.createElement('div');
+    root.setAttribute('id', 'root');
+
     const elem = document.createElement('div');
     elem.textContent = 'Hello World';
     elem.className = 'containers';
 
-    document.getElementById('root').append(elem);
+    root.append(elem);
+    body.append(root);
   </script>
 </body>

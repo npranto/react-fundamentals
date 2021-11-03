@@ -19,12 +19,17 @@
     // This is similar to ReactDOM.render
     // rootElement.append(element)
 
-    const element = React.createElement('div', {
-      className: 'container',
-      children: 'Hello World',
-    });
+    const helloSpan = React.createElement('span', {children: 'Hello'});
+    const worldSpan = React.createElement('span', {children: 'World'});
+    const container = React.createElement(
+      'div',
+      {className: 'container'},
+      helloSpan,
+      ' ',
+      worldSpan,
+    );
 
-    ReactDOM.render(element, document.getElementById('root'));
+    ReactDOM.render(container, document.getElementById('root'));
 
     // 🐨 Please re-implement the regular document.createElement code above
     // with these React API calls
