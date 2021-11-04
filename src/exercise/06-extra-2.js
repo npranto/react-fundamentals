@@ -9,9 +9,17 @@ function UsernameForm({onSubmitUsername}) {
   // `event.preventDefault()` to prevent the default behavior of form submit
   // events (which refreshes the page).
 
+  const [error, setError] = React.useState(null);
+
   function handleSubmit(e) {
     e.preventDefault();
     onSubmitUsername(e.target.elements.username.value);
+  }
+
+  function handleChange(e) {
+    const {value} = e.target;
+    const isValid = value === value.toLowerCase();
+    setError(isValid ? null : 'Username must be lower case');
   }
   //
   // 🐨 get the value from the username input (using whichever method
@@ -27,9 +35,22 @@ function UsernameForm({onSubmitUsername}) {
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
-        <input type="text" name="username" id="username" />
+        <input
+          type="text"
+          name="username"
+          id="username"
+          onChange={handleChange}
+        />
+        <div
+          role="alert"
+          style={{color: 'maroon', fontStyle: 'italic', fontSize: '0.75rem'}}
+        >
+          {error}
+        </div>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={error !== null}>
+        Submit
+      </button>
     </form>
   );
 }
