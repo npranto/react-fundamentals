@@ -18,12 +18,15 @@
 <!--   📜 https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append -->
 
 <body>
-  <div id="root"></div>
   <script type="module">
-    const rootElem = document.querySelector('#root')
+    const rootElem = document.createElement('div')
+    rootElem.setAttribute('id', 'root')
+
     const divElem = document.createElement('div')
     divElem.textContent = 'Hello World'
     divElem.classList.add('container')
+
     rootElem.append(divElem)
+    document.body.append(rootElem)
   </script>
 </body>
