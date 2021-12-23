@@ -1,0 +1,36 @@
+<!-- Creating custom components -->
+<!-- http://localhost:3000/isolated/exercise/04.html -->
+
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@17.0.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script type="text/babel">
+    function Message({ greeting, subject }) {
+      return <div className="message">{greeting} {subject}</div>;
+    }
+
+    Message.propTypes = {
+      greeting: (prop, propName, componentName) => {
+        if (typeof prop[propName] !== 'string') {
+          return new Error(`[${propName}] must be of type string in <${componentName} />`);
+        }
+      }, 
+      subject: (prop, propName, componentName) => {
+        if (typeof prop[propName] !== 'string') {
+          return new Error(`[${propName}] must be of type string in <${componentName} />`);
+        }
+      } 
+    }
+
+    const element = (
+      <div className="container">
+        <Message subject="World" />
+        <Message greeting="Goodbye" subject="World" />
+      </div>
+    )
+
+    ReactDOM.render(element, document.getElementById('root'))
+  </script>
+</body>
